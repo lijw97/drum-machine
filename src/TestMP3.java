@@ -12,7 +12,7 @@ import javazoom.jl.player.*;
 public class TestMP3 {
     public static void main(String[] args) {
         try{
-            File file = new File("C:\\Users\\Jeffrey Li\\drum-machine\\src\\sample.mp3");
+            File file = new File("C:\\Users\\Jeffrey Li\\drum-machine\\sample.mp3");
             FileInputStream fis = new FileInputStream(file);
             BufferedInputStream bis = new BufferedInputStream(fis);
             try {
