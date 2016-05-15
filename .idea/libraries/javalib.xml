@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="javalib">
+    <CLASSES>
+      <root url="file://$USER_HOME$/cs61b/adr/javalib" />
+      <root url="jar://$PROJECT_DIR$/jl1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jmf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mp3plugin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/cs61b/adr/javalib" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/cs61b/adr/javalib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/cs61b/adr/javalib" recursive="false" type="SOURCES" />
+  </library>
+</component>
