@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.*;
+import java.util.concurrent.CountDownLatch;
+
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.*;
 
@@ -15,6 +17,15 @@ public class Sound implements Runnable{
     private BufferedInputStream bis_sound;
     private String soundname;
     private boolean[] arrayplay;
+    private CountDownLatch latch;
+
+    public CountDownLatch getLatch() {
+        return latch;
+    }
+
+    public void setLatch(CountDownLatch latch) {
+        this.latch = latch;
+    }
 
     public File getSoundpath() {
         return soundpath;
@@ -55,13 +66,34 @@ public class Sound implements Runnable{
         }
     }
     public void run() {
-        try {
-            Player play = new Player(bis_sound);
-            play.play();
+        Thread track = new Thread() {
+            public void run() {
+                try {
+                    try {
+                        latch.countDown();
+                        latch.await();
+                        Player play = new Player(bis_sound);
+                        play.play();
 
-        } catch (JavaLayerException jexcep) {
-            System.out.println("Problem in run in Sound class");
-        }
+                    } catch (InterruptedException e) {
+                        System.out.println(e);
+                    }
+                }
+                catch (Exception e) { System.out.println(e); }
+            }
+        };
+        track.start();
+//        try {
+//            try {
+//                latch.await();
+//            } catch(InterruptedException e) {
+//
+//            }
+//
+//
+//        } catch (JavaLayerException jexcep) {
+//            System.out.println("Problem in run in Sound class");
+//        }
     }
     public void run(int index) {
         if (arrayplay[index]) {

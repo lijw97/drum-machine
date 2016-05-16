@@ -2,6 +2,7 @@
  * Created by Jeffrey Li on 5/15/2016.
  */
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 
 import java.util.ArrayList;
@@ -37,10 +38,18 @@ public class SoundBoard {
                }
            }
            //CyclicBarrier gate = new CyclicBarrier(amounttrue);
-           if (amounttrue != 0) {
-               soundboard.get(0).run(0);
-               soundboard.get(3).run(0);
+           CountDownLatch latch = new CountDownLatch(amounttrue);
+           for (int j = 0; j < soundboard.size(); j++) {
+               if (soundboard.get(j).getArrayplay()[i] == true) {
+                   soundboard.get(j).setLatch(latch);
+               }
            }
+           for (int j = 0; j < soundboard.size(); j++) {
+               if (soundboard.get(j).getArrayplay()[i] == true) {
+                   soundboard.get(j).run(i);
+               }
+           }
+
 //           try {
 //               Thread.sleep(400);
 //           } catch (InterruptedException exception) {
@@ -53,9 +62,7 @@ public class SoundBoard {
         SoundBoard board = new SoundBoard();
         board.changePlayStatus(0, "Clap");
         board.changePlayStatus(0, "Snare");
-        for (Sound s : board.soundboard) {
-            s.printArray();
-        }
+
         board.run();
     }
 
