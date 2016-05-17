@@ -13,5 +13,13 @@ public class TestMP3Simultaneous {
         Thread t2 = new Thread(new MP3Runnable("C:\\Users\\Jeffrey Li\\drum-machine\\src\\open-hihat.mp3"));
         t.start();
         t2.start();
+
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e){
+            System.out.println("Interrupted.");
+        }
+        System.out.println("swag");
+
     }
 }
