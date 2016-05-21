@@ -2,24 +2,33 @@
  * Created by Jeffrey Li on 5/14/2016.
  */
 import java.io.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 
 import javazoom.jl.decoder.JavaLayerException;
 
 import javazoom.jl.player.*;
 
+
+
 public class TestMP3Simultaneous {
     public static void main(String[] args) {
-        Thread t = new Thread(new MP3Runnable("C:\\Users\\Jeffrey Li\\drum-machine\\src\\clap.mp3"));
-        Thread t2 = new Thread(new MP3Runnable("C:\\Users\\Jeffrey Li\\drum-machine\\src\\open-hihat.mp3"));
-        t.start();
-        t2.start();
 
-        try {
-            Thread.sleep(400);
-        } catch (InterruptedException e){
-            System.out.println("Interrupted.");
-        }
-        System.out.println("swag");
+
+            Sound clap = new Sound("C:\\Users\\Jeffrey Li\\drum-machine\\src\\clap.mp3", "Clap");
+            Sound hihat = new Sound("C:\\Users\\Jeffrey Li\\drum-machine\\src\\open-hihat.mp3", "Hihat");
+
+            CountDownLatch latch = new CountDownLatch(1);
+//            clap.setLatch(latch);
+//            hihat.setLatch(latch);
+            clap.run();
+            hihat.run();
+            latch.countDown();
+
+
+        Sound snare = new Sound("C:\\Users\\Jeffrey Li\\drum-machine\\src\\snare1.mp3", "Snare");
+        snare.run();
+
 
     }
 }

@@ -17,15 +17,15 @@ public class Sound implements Runnable{
     private BufferedInputStream bis_sound;
     private String soundname;
     private boolean[] arrayplay;
-    private CountDownLatch latch;
-
-    public CountDownLatch getLatch() {
-        return latch;
-    }
-
-    public void setLatch(CountDownLatch latch) {
-        this.latch = latch;
-    }
+//    private CountDownLatch latch;
+//
+//    public CountDownLatch getLatch() {
+//        return latch;
+//    }
+//
+//    public void setLatch(CountDownLatch latch) {
+//        this.latch = latch;
+//    }
 
     public File getSoundpath() {
         return soundpath;
@@ -58,42 +58,25 @@ public class Sound implements Runnable{
         for (int i = 0; i < 16; i++) {
             arrayplay[i] = false;
         }
-        try {
-            fis_sound = new FileInputStream(this.soundpath);
-            bis_sound = new BufferedInputStream(fis_sound);
-        } catch(FileNotFoundException exception) {
-            System.out.println("Sound in Sound Class is not found!");
-        }
+
     }
     public void run() {
         Thread track = new Thread() {
             public void run() {
                 try {
-                    try {
-                        latch.countDown();
-                        latch.await();
+                    fis_sound = new FileInputStream(soundpath);
+                    bis_sound = new BufferedInputStream(fis_sound);
+
                         Player play = new Player(bis_sound);
                         play.play();
 
-                    } catch (InterruptedException e) {
-                        System.out.println(e);
-                    }
+
                 }
                 catch (Exception e) { System.out.println(e); }
             }
         };
         track.start();
-//        try {
-//            try {
-//                latch.await();
-//            } catch(InterruptedException e) {
-//
-//            }
-//
-//
-//        } catch (JavaLayerException jexcep) {
-//            System.out.println("Problem in run in Sound class");
-//        }
+
     }
     public void run(int index) {
         if (arrayplay[index]) {

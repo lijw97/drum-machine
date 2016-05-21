@@ -38,31 +38,29 @@ public class SoundBoard {
                }
            }
            //CyclicBarrier gate = new CyclicBarrier(amounttrue);
-           CountDownLatch latch = new CountDownLatch(amounttrue);
-           for (int j = 0; j < soundboard.size(); j++) {
-               if (soundboard.get(j).getArrayplay()[i] == true) {
-                   soundboard.get(j).setLatch(latch);
-               }
-           }
+
            for (int j = 0; j < soundboard.size(); j++) {
                if (soundboard.get(j).getArrayplay()[i] == true) {
                    soundboard.get(j).run(i);
                }
            }
 
-//           try {
-//               Thread.sleep(400);
-//           } catch (InterruptedException exception) {
-//               System.out.println("Program stopped.");
-//           }
+           try {
+               Thread.sleep(1200);
+           } catch (InterruptedException exception) {
+               System.out.println("Program stopped.");
+           }
        }
    }
 
     public static void main(String[] args) {
         SoundBoard board = new SoundBoard();
         board.changePlayStatus(0, "Clap");
-        board.changePlayStatus(0, "Snare");
+        board.changePlayStatus(1, "Snare");
 
+        for (int i = 0; i < board.soundboard.size(); i++) {
+            board.soundboard.get(i).printArray();
+        }
         board.run();
     }
 
