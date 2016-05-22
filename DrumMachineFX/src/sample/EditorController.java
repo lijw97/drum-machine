@@ -56,16 +56,22 @@ public class EditorController
 {
     @FXML private VBox soundboard;
     private ArrayList<HBox> instrumentList = new ArrayList<HBox>();
+    String baseFile = "//Users//Ziad//Documents//Programming//drum-machine//src//";
+    ArrayList<Sound> sounds = new ArrayList<Sound>();
 
     @FXML public void initialize()
     {
-        addInstrument("Hi-Hat");
-        addInstrument("Snare Drum");
-        addInstrument("Kick");
-        addInstrument("Cymbals");
+        addInstrument("Hi-Hat", "closed-hihat.mp3");
+        addInstrument("Snare Drum", "snare1.mp3");
+        addInstrument("Kick", "kick.mp3");
+        addInstrument("Clap", "clap.mp3");
+
+        Button playButton = new Button("Play");
+        playButton.setOnAction(e -> play());
+        soundboard.getChildren().add(playButton);
     }
 
-    public void addInstrument(String name)
+    public void addInstrument(String name, String file)
     {
         //Initializes HBox that will contain instrument and instrument's buttons
         HBox instrument = new HBox();
@@ -74,6 +80,7 @@ public class EditorController
         instrument.setAlignment(Pos.CENTER_LEFT);
         soundboard.getChildren().add(instrument);
         instrumentList.add(instrument);
+        sounds.add(new Sound(baseFile + file));
 
         //Adds ComboBox preset to selected instrument
         ComboBox<String> instrumentCombo = new ComboBox<String>();
@@ -96,6 +103,18 @@ public class EditorController
     public void beatClicked(String id, int listIndex)
     {
         System.out.println("Button: " + id + " pressed in row number: " + listIndex);
+
         //This is where it edits the array
+        if(sounds.get(listIndex).array[Integer.parseInt(id)] == 0) sounds.get(listIndex).array[Integer.parseInt(id)] = 1;
+        else sounds.get(listIndex).array[Integer.parseInt(id)] = 0;
+    }
+
+    public void play()
+    {
+        
+        for(Sound sound : sounds)
+        {
+            new Thread(sound).start();
+        }
     }
 }
