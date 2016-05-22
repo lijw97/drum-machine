@@ -2,11 +2,8 @@
  * Created by Jeffrey Li on 5/15/2016.
  */
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
-
 import java.util.ArrayList;
-public class SoundBoard {
+public class SoundBoard implements SoundBoardInterface {
     public ArrayList<Sound> soundboard = new ArrayList();
     public SoundBoard() {
         soundboard.add(new Sound("C:\\Users\\Jeffrey Li\\drum-machine\\src\\clap.mp3", "Clap"));
@@ -15,6 +12,7 @@ public class SoundBoard {
         soundboard.add(new Sound("C:\\Users\\Jeffrey Li\\drum-machine\\src\\snare1.mp3", "Snare"));
         soundboard.add(new Sound("C:\\Users\\Jeffrey Li\\drum-machine\\src\\closed-hihat.mp3", "Closed-Hihat"));
     }
+    @Override
     public void changePlayStatus(int index, String soundName) {
         Sound selectedSound = null;
 
@@ -29,34 +27,46 @@ public class SoundBoard {
             System.out.println("soundboard did not contain sound!");
         }
     }
-   public void run() {
-       for (int i = 0; i < 16; i++) {
-           int amounttrue = 0;
-           for (int j = 0; j < soundboard.size(); j++) {
-               if (soundboard.get(j).getArrayplay()[i] == true) {
-                   amounttrue += 1;
-               }
-           }
-           //CyclicBarrier gate = new CyclicBarrier(amounttrue);
+    @Override
+    public void run() {
+        for (int i = 0; i < 16; i++) {
+            int amounttrue = 0;
+            for (int j = 0; j < soundboard.size(); j++) {
+                if (soundboard.get(j).getArrayplay()[i] == true) {
+                    amounttrue += 1;
+                }
+            }
+            //CyclicBarrier gate = new CyclicBarrier(amounttrue);
 
-           for (int j = 0; j < soundboard.size(); j++) {
-               if (soundboard.get(j).getArrayplay()[i] == true) {
-                   soundboard.get(j).run(i);
-               }
-           }
+            for (int j = 0; j < soundboard.size(); j++) {
+                if (soundboard.get(j).getArrayplay()[i] == true) {
+                    soundboard.get(j).run(i);
+                }
+            }
 
-           try {
-               Thread.sleep(1200);
-           } catch (InterruptedException exception) {
-               System.out.println("Program stopped.");
-           }
-       }
-   }
+            try {
+                Thread.sleep(440);
+            } catch (InterruptedException exception) {
+                System.out.println("Program stopped.");
+            }
+        }
+    }
+
+
 
     public static void main(String[] args) {
         SoundBoard board = new SoundBoard();
-        board.changePlayStatus(0, "Clap");
-        board.changePlayStatus(1, "Snare");
+
+        for (int i = 0; i < 16; i++) {
+            board.changePlayStatus(i, "Clap");
+            if (i < 8) {
+                board.changePlayStatus(i, "Snare");
+                //board.changePlayStatus(i, "Snare");
+            }
+        }
+
+
+
 
         for (int i = 0; i < board.soundboard.size(); i++) {
             board.soundboard.get(i).printArray();
