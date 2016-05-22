@@ -111,7 +111,7 @@ public class EditorController
 
     public void play()
     {
-        
+
         for(Sound sound : sounds)
         {
             new Thread(sound).start();
