@@ -2,6 +2,7 @@ package sample;
 
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -48,23 +49,33 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.scene.media.MediaView;
 /**
  * Created by Ziad on 5/15/16.
  */
 public class EditorController
 {
     @FXML private VBox soundboard;
+    @FXML public static MediaView mediaView;
     private ArrayList<HBox> instrumentList = new ArrayList<HBox>();
     String baseFile = "//Users//Ziad//Documents//Programming//drum-machine//src//";
     ArrayList<Sound> sounds = new ArrayList<Sound>();
 
     @FXML public void initialize()
     {
-        addInstrument("Hi-Hat", "closed-hihat.mp3");
-        addInstrument("Snare Drum", "snare1.mp3");
-        addInstrument("Kick", "kick.mp3");
-        addInstrument("Clap", "clap.mp3");
+        addInstrument("Hi-Hat", "closed-hihat.wav");
+        addInstrument("Snare Drum", "snare1.wav");
+        addInstrument("Kick", "kick.wav");
+        addInstrument("Clap", "clap2.wav");
+
+        Media chance = new Media(Paths.get(baseFile + "sample.mp3").toUri().toString());
+        MediaPlayer player = new MediaPlayer(chance);
+        mediaView = new MediaView();
+        mediaView.setMediaPlayer(player);
+        //player.setAutoPlay(true);
 
         Button playButton = new Button("Play");
         playButton.setOnAction(e -> play());
@@ -111,10 +122,9 @@ public class EditorController
 
     public void play()
     {
-
-        for(Sound sound : sounds)
+        for(int i = 0; i<sounds.size(); i++)
         {
-            new Thread(sound).start();
+            new Thread(sounds.get(i)).start();
         }
     }
 }

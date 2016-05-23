@@ -1,5 +1,9 @@
 package sample;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 /**
  * Created by Ziad on 5/21/16.
  */
@@ -9,6 +13,7 @@ public class Sound implements Runnable
     int[] array = new int[16];
     Player player = new Player();
     boolean running = true;
+    boolean onMediaView = false;
 
     public Sound(String fileName)
     {
@@ -32,18 +37,28 @@ public class Sound implements Runnable
 
     public void run()
     {
-
-            for(int i = 0; i<16; i++)
+        for(int i = 0; i<16; i++)
+        {
+            if(array[i] == 1)
             {
-                if(array[i] == 1)
-                {
+                try {
                     player.play(file);
-                    System.out.println("Played: " + file + ", Iteration: " + i);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedAudioFileException e) {
+                    e.printStackTrace();
+                } catch (LineUnavailableException e) {
+                    e.printStackTrace();
                 }
-                pause(250);
+                System.out.println("Played: " + file + ", Iteration: " + i);
+                try {
+                    player.endClip();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            terminate();
-
+            pause(250);
+        }
     }
 
     public void pause(int milliseconds)
