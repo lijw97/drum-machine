@@ -1,103 +1,51 @@
 import java.io.File;
-import java.io.*;
-
-import javazoom.jl.player.*;
-
-
 
 /**
- * Created by Jeffrey Li on 5/15/2016.
+ * Created by Jeffrey Li on 5/24/2016.
  */
-
-public class Sound implements Runnable, SoundInterface {
-    private File soundpath;
-    private FileInputStream fis_sound;
-    private BufferedInputStream bis_sound;
-    private String soundname;
-    private boolean[] arrayplay;
-//    private CountDownLatch latch;
-//
-//    public CountDownLatch getLatch() {
-//        return latch;
-//    }
-//
-//    public void setLatch(CountDownLatch latch) {
-//        this.latch = latch;
-//    }
-
-    @Override
-    public File getSoundpath() {
-        return soundpath;
-    }
-
-    @Override
-    public void setSoundpath(File soundpath) {
-        this.soundpath = soundpath;
-    }
-
-    @Override
-    public String getSoundname() {
-        return soundname;
-    }
-
-    @Override
-    public void setSoundname(String soundname) {
-        this.soundname = soundname;
-    }
-
-    @Override
-    public boolean[] getArrayplay() {
-        return arrayplay;
-    }
-
-    public void setArrayplay(boolean[] arrayplay) {
-        this.arrayplay = arrayplay;
-    }
-
-    public Sound(String soundpath, String soundname) {
-        this.soundpath = new File(soundpath);
-        this.soundname = soundname;
-        arrayplay = new boolean[16];
-        for (int i = 0; i < 16; i++) {
-            arrayplay[i] = false;
-        }
-
-    }
-    @Override
-    public void run() {
-        Thread track = new Thread() {
-            public void run() {
-                try {
-                    fis_sound = new FileInputStream(soundpath);
-                    bis_sound = new BufferedInputStream(fis_sound);
-
-                    Player play = new Player(bis_sound);
-                    play.play();
-
-
-                }
-                catch (Exception e) { System.out.println(e); }
-            }
-        };
-        track.start();
-
-    }
-    @Override
-    public void run(int index) {
-        if (arrayplay[index]) {
-            run();
+public class Sound {
+    private String pathToWAV;
+    private File WAV_file;
+    private String WAV_name;
+    private boolean[] playArray = new boolean[16]; //represents 16 beats
+    public Sound(String WAV_name, String pathToWAV) {
+        this.WAV_name = WAV_name;
+        this.pathToWAV = pathToWAV;
+        this.WAV_file = new File(pathToWAV);
+        for (int i = 0; i < 16; i++) { //initializes everything to false
+            playArray[i] = false;
         }
     }
-
-    public void printArray() {
-        System.out.print("[");
-        for (Boolean bool : arrayplay) {
-            System.out.print(" " + bool);
+    public Sound(File file) {
+        this.WAV_file = file;
+        this.pathToWAV = file.getPath();
+        this.WAV_name = file.getName().replace(".wav", "");
+        for (int i = 0; i < 16; i++) { //initializes everything to false
+            playArray[i] = false;
         }
-        System.out.println("]");
+    }
+    //changes the play status to the opposite of what it was before.
+    public void changePlayStatus(int i) {
+        playArray[i] = !(playArray[i]);
     }
 
-    public void setTempo(int i) {
+    public String getPathToWAV() {
+        return pathToWAV;
+    }
 
+    public File getWAV_file() {
+        return WAV_file;
+    }
+
+    public String getWAV_name() {
+        return WAV_name;
+    }
+
+    public boolean[] getPlayArray() {
+        return playArray;
+    }
+
+    public boolean isPlayed(int beatindex) {
+        return playArray[beatindex];
     }
 }
