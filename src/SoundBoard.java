@@ -12,11 +12,11 @@ public class SoundBoard implements SoundBoardInterface{
     int tempo = 600; //default tempo is 100 bpm or 600ms between beats.
     public SoundBoard() {
         soundBoard = new ArrayList();
-        soundBoard.add(0, new Sound("Clap", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\clap.wav"));
-        soundBoard.add(1, new Sound("Closed-Hihat", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\closed-hihat.wav"));
-        soundBoard.add(2, new Sound("Kick", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\kick.wav"));
-        soundBoard.add(3, new Sound("Open-Hihat", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\open-hihat.wav"));
-        soundBoard.add(4, new Sound("Snare", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\snare.wav"));
+        soundBoard.add(0, new Sound("Clap", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\Clap.wav"));
+        soundBoard.add(1, new Sound("Closed-Hihat", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\Closed-hihat.wav"));
+        soundBoard.add(2, new Sound("Kick", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\Kick.wav"));
+        soundBoard.add(3, new Sound("Open-Hihat", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\Open-hihat.wav"));
+        soundBoard.add(4, new Sound("Snare", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\Snare.wav"));
         mergedSounds = new HashSet();
     }
     public void changePlayStatus(int beatindex, String soundName) {
@@ -43,22 +43,22 @@ public class SoundBoard implements SoundBoardInterface{
                     playedSounds.add(soundBoard.get(j));
                 }
             }
-            for (int j = playedSounds.size() - 1; j > 0; j--) {
-                if (j == 0) {
+            for (int j = 0; j < playedSounds.size() - 1; j++) {
+                if (playedSounds.size() == 1) {
                     finalSound = playedSounds.get(j);
-                } else if (finalSound == null && j == 1) {
+                } else if (finalSound == null && playedSounds.size() == 2) {
                     finalSound = (merge.merge(playedSounds.get(j).getWAV_file(),
-                            playedSounds.get(j - 1).getWAV_file(), playedSounds.get(j).getWAV_name(),
-                            playedSounds.get(j - 1).getWAV_name(), i, true));
+                            playedSounds.get(j + 1).getWAV_file(), playedSounds.get(j).getWAV_name(),
+                            playedSounds.get(j + 1).getWAV_name(), i, true));
                 } else if (finalSound.equals(null)) {
                     finalSound = (merge.merge(playedSounds.get(j).getWAV_file(),
-                            playedSounds.get(j - 1).getWAV_file(), playedSounds.get(j).getWAV_name(),
-                            playedSounds.get(j - 1).getWAV_name(), i, false));
+                            playedSounds.get(j + 1).getWAV_file(), playedSounds.get(j).getWAV_name(),
+                            playedSounds.get(j + 1).getWAV_name(), i, false));
 
                 } else {
                     Sound copyFinalSound = finalSound;
-                    finalSound = merge.merge(finalSound.getWAV_file(), playedSounds.get(j - 1).getWAV_file(),
-                            finalSound.getWAV_name(), playedSounds.get(j - 1).getWAV_name(), i, j - 1 == 0);
+                    finalSound = merge.merge(finalSound.getWAV_file(), playedSounds.get(j + 1).getWAV_file(),
+                            finalSound.getWAV_name(), playedSounds.get(j + 1).getWAV_name(), i, j + 1 == playedSounds.size() - 1);
                     copyFinalSound.getWAV_file().delete();
                 }
             }
