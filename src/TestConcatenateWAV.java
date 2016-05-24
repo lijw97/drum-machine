@@ -9,8 +9,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 public class TestConcatenateWAV {
     public static void main(String[] args) {
-        String wavFile1 = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\clap.wav";
-        String wavFile2 = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\closed-hihat.wav";
+        String wavFile1 = "//Users//Ziad//Documents//Programming//drum-machine//src//clap.wav";
+        String wavFile2 = "//Users//Ziad//Documents//Programming//drum-machine//src//closed-hihat.wav";
 
         try {
             AudioInputStream clip1 = AudioSystem.getAudioInputStream(new File(wavFile1));
@@ -24,7 +24,7 @@ public class TestConcatenateWAV {
 
             AudioSystem.write(appendedFiles,
                     AudioFileFormat.Type.WAVE,
-                    new File("C:\\Users\\Jeffrey Li\\drum-machine\\src\\wavAppended.wav"));
+                    new File("//Users//Ziad//Documents//Programming//drum-machine//src//wavAppended.wav"));
         } catch (Exception e) {
             e.printStackTrace();
         }

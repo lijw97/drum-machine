@@ -65,8 +65,24 @@ public class TestMergeWAV {
         } else {
             max = sound1;
         }
-        for (int i=0; i< Math.min(sound1.length, sound2.length); i++) {
-            array[i] = (byte) ((sound2[i] + sound1[i]));
+        for (int i=0; i< Math.min(sound1.length, sound2.length); i+=2) {
+            short buf1A = sound1[i+1];
+            short buf2A = sound1[i];
+            buf1A = (short) ((buf1A & 0xff) << 8);
+            buf2A = (short) (buf2A & 0xff);
+
+            short buf1B = sound2[i+1];
+            short buf2B = sound2[i];
+            buf1B = (short) ((buf1B & 0xff) << 8);
+            buf2B = (short) (buf2B & 0xff);
+
+            short buf1C = (short) (buf1A + buf1B);
+            short buf2C = (short) (buf2A + buf2B);
+
+            short res = (short) (buf1C | buf2C);
+
+            array[i] = (byte) res;
+            array[i+1] = (byte) (res >> 8);
         }
         for (int i = Math.min(sound1.length, sound2.length); i < Math.max(sound1.length, sound2.length); i++){
             array[i] = max[i];
@@ -80,12 +96,12 @@ public class TestMergeWAV {
         try {
             AudioSystem.write(ais,
                     AudioFileFormat.Type.WAVE,
-                    new File("C:\\Users\\Jeffrey Li\\drum-machine\\src\\new.wav"));
+                    new File("//Users//Ziad//Documents//Programming//drum-machine//src//new3.wav"));
         } catch(IOException e){}
 
     }
     public static void main(String[] args) {
-        TestMergeWAV wav = new TestMergeWAV("C:\\Users\\Jeffrey Li\\drum-machine\\src\\open-hihat.wav", "C:\\Users\\Jeffrey Li\\drum-machine\\src\\snare1.wav");
+        TestMergeWAV wav = new TestMergeWAV("//Users//Ziad//Documents//Programming//drum-machine//src//new3.wav", "//Users//Ziad//Documents//Programming//drum-machine//src//clap.wav");
         byte[] array = wav.mixBuffers();
         wav.write(array);
 
