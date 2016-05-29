@@ -61,7 +61,7 @@ public class EditorController
     @FXML private VBox soundboard;
     @FXML public static MediaView mediaView;
     private ArrayList<HBox> instrumentList = new ArrayList<HBox>();
-    String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
+    String baseFile = "/Users/Ziad/Documents/Programming/drum-machine/src/";
     ArrayList<Sound> sounds = new ArrayList<Sound>();
 
     @FXML public void initialize()
@@ -69,7 +69,7 @@ public class EditorController
         addInstrument("Hi-Hat", "closed-hihat.wav");
         addInstrument("Snare Drum", "snare1.wav");
         addInstrument("Kick", "kick.wav");
-        addInstrument("Clap", "clap2.wav");
+        addInstrument("Clap", "clap.wav");
 
         Media chance = new Media(Paths.get(baseFile + "sample.mp3").toUri().toString());
         MediaPlayer player = new MediaPlayer(chance);
@@ -124,7 +124,10 @@ public class EditorController
     {
         for(int i = 0; i<sounds.size(); i++)
         {
-            new Thread(sounds.get(i)).start();
+            synchronized (this)
+            {
+                new Thread(sounds.get(i)).start();
+            }
         }
     }
 }
