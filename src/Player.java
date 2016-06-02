@@ -38,12 +38,13 @@ public class Player {
             clip.start();
 
             clip.drain(); //DOES NOT BLOCK See Bug #4732218
-            Thread.sleep(clip.getMicrosecondLength());
+            //Thread.sleep(clip.getMicrosecondLength()/1000);
         } catch (LineUnavailableException e){
             System.out.println("hello");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+//        catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void endClip() throws IOException

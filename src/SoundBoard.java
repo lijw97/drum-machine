@@ -61,7 +61,7 @@ public class SoundBoard implements SoundBoardInterface{
                 player.play(playedSounds.get(0).getPathToWAV());
             }
             try {
-                Thread.sleep(300);
+                Thread.sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -73,10 +73,10 @@ public class SoundBoard implements SoundBoardInterface{
 
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         SoundBoard board = new SoundBoard();
-//        board.changePlayStatus(1, "Clap");
-//        board.changePlayStatus(0, "Kick");
-//        board.changePlayStatus(0, "Snare");
-//        board.changePlayStatus(1, "Open-Hihat");
+        board.changePlayStatus(1, "Clap");
+        board.changePlayStatus(0, "Kick");
+        board.changePlayStatus(0, "Snare");
+        board.changePlayStatus(1, "Open-Hihat");
         board.changePlayStatus(2, "Closed-Hihat");
         board.changePlayStatus(2, "Clap");
         board.run();
