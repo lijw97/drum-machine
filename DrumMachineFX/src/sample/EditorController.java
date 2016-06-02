@@ -61,13 +61,13 @@ public class EditorController
     @FXML private VBox soundboard;
     @FXML public static MediaView mediaView;
     private ArrayList<HBox> instrumentList = new ArrayList<HBox>();
-    String baseFile = "/Users/Ziad/Documents/Programming/drum-machine/src/";
+    String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
     ArrayList<Sound> sounds = new ArrayList<Sound>();
 
     @FXML public void initialize()
     {
         addInstrument("Hi-Hat", "closed-hihat.wav");
-        addInstrument("Snare Drum", "snare1.wav");
+        addInstrument("Snare Drum", "snare.wav");
         addInstrument("Kick", "kick.wav");
         addInstrument("Clap", "clap.wav");
 

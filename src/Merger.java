@@ -12,13 +12,37 @@ public class Merger {
     public Merger(){
 
     }
-    public Sound merge(File file1, File file2, String nameOfSound1,
-                      String nameOfSound2, int beat, boolean isLastMerge) {
+    public byte[] merge(byte[] array, File file) {
+        byte[] sound1;
+        ByteArrayOutputStream out1 = new ByteArrayOutputStream();
+        BufferedInputStream in1 = null;
+        try {
+            in1 = new BufferedInputStream(new FileInputStream(file));
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        int read;
+        byte[] buff = new byte[1024];
+        try {
+            while ((read = in1.read(buff)) > 0) {
+                out1.write(buff, 0, read);
+            }
+        } catch(java.io.IOException e) {
+            System.out.println("Problem with reading out1.");
+        }
+        try {
+            out1.flush();
+
+        } catch(java.io.IOException e){}
+        sound1 = out1.toByteArray();
+        return mixBuffers(sound1, array);
+
+    }
+    public byte[] merge(File file1, File file2) {
 
         byte[] sound1;
         byte[] sound2;
-        AudioInputStream ais1;
-        AudioInputStream ais2;
         ByteArrayOutputStream out1 = new ByteArrayOutputStream();
         BufferedInputStream in1 = null;
         ByteArrayOutputStream out2 = new ByteArrayOutputStream();
@@ -54,19 +78,7 @@ public class Merger {
         } catch(java.io.IOException e){}
         sound1 = out1.toByteArray();
         sound2 = out2.toByteArray();
-        try {
-            try {
-                ais1 = AudioSystem.getAudioInputStream(file1);
-                ais2 = AudioSystem.getAudioInputStream(file2);
-                return write(mixBuffers(sound1, sound2), ais1, ais2, nameOfSound1, nameOfSound2, beat, isLastMerge);
-            } catch(IOException e){
-                System.out.println("IO Exception with ais1 and ais2.");
-            }
-        } catch(UnsupportedAudioFileException e){
-            System.out.println("UnsupportedAudioFile Exception with path1 and/or path2.");
-        }
-
-        return null;
+        return mixBuffers(sound1, sound2);
     }
     private byte[] mixBuffers(byte[] sound1, byte[] sound2) {
         byte[] array = new byte[Math.max(sound1.length, sound2.length)];
