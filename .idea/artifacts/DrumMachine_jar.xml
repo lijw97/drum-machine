@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DrumMachine:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DrumMachine_jar</output-path>
+    <root id="archive" name="DrumMachine.jar">
+      <element id="module-output" name="DrumMachine" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/gjdb.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/algs4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/jh61b.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/stdlib.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/classmexer.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/Jama-1.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/junit-4.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/xchart-2.4.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/stdlib-package.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/hamcrest-core-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/checkstyle-6.15-all.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/Automaton-1.3.2-all-deps.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/cs61b/adr/javalib/reflections-0.9.9-RC1-uberjar.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jl1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jmf.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

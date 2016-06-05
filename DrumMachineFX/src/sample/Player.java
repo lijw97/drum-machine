@@ -43,9 +43,7 @@ public class Player {
         } catch (LineUnavailableException e){
             System.out.println("hello");
         }
-//        catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
 

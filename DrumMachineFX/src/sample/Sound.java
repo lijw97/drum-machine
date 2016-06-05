@@ -55,6 +55,12 @@ public class Sound {
         return playArray[beatindex];
     }
 
+    public void clear() {
+        for (int i = 0; i < 16; i++) {
+            playArray[i] = false;
+        }
+    }
+
 
 
 }

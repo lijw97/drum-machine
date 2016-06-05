@@ -12,7 +12,7 @@ public class Merger {
     public Merger(){
 
     }
-    public byte[] merge(byte[] array, File file) {
+    public byte[] getByteArray(File file) {
         byte[] sound1;
         ByteArrayOutputStream out1 = new ByteArrayOutputStream();
         BufferedInputStream in1 = null;
@@ -36,48 +36,16 @@ public class Merger {
 
         } catch(java.io.IOException e){}
         sound1 = out1.toByteArray();
+        return sound1;
+    }
+    public byte[] merge(byte[] array, File file) {
+        byte[] sound1 = getByteArray(file);
         return mixBuffers(sound1, array);
 
     }
     public byte[] merge(File file1, File file2) {
-
-        byte[] sound1;
-        byte[] sound2;
-        ByteArrayOutputStream out1 = new ByteArrayOutputStream();
-        BufferedInputStream in1 = null;
-        ByteArrayOutputStream out2 = new ByteArrayOutputStream();
-        BufferedInputStream in2 = null;
-        try {
-            in1 = new BufferedInputStream(new FileInputStream(file1));
-            in2 = new BufferedInputStream(new FileInputStream(file2));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        int read;
-        byte[] buff = new byte[1024];
-        int read2;
-        byte[] buff2 = new byte[1024];
-        try {
-            while ((read = in1.read(buff)) > 0) {
-                out1.write(buff, 0, read);
-            }
-        } catch(java.io.IOException e) {
-            System.out.println("Problem with reading out1.");
-        }
-        try {
-            while ((read2 = in2.read(buff2)) > 0) {
-                out2.write(buff2, 0, read2);
-            }
-        } catch(java.io.IOException e) {
-            System.out.println("Problem with reading out2.");
-        }
-        try {
-            out1.flush();
-            out2.flush();
-        } catch(java.io.IOException e){}
-        sound1 = out1.toByteArray();
-        sound2 = out2.toByteArray();
+        byte[] sound1 = getByteArray(file1);
+        byte[] sound2 = getByteArray(file2);
         return mixBuffers(sound1, sound2);
     }
     private byte[] mixBuffers(byte[] sound1, byte[] sound2) {
