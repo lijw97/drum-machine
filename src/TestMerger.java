@@ -10,7 +10,8 @@ public class TestMerger {
         Player player = new Player();
         Merger merger = new Merger();
         byte[] boo = merger.merge(clap.getWAV_file(), openhihat.getWAV_file());
-        player.play(boo);
+        byte[] boo1 = merger.merge(boo, openhihat.getWAV_file());
+        player.play(boo1);
 
 
 

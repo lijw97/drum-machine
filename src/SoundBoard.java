@@ -49,9 +49,9 @@ public class SoundBoard implements SoundBoardInterface{
                 }
             }
             if (playedSounds.size() > 1) {
-                for (int j = 0; j < playedSounds.size(); j++) {
+                for (int j = 1; j < playedSounds.size(); j++) {
                     if (finalSound == null) {
-                        finalSound = merge.merge(playedSounds.get(j).getWAV_file(), playedSounds.get(j + 1).getWAV_file());
+                        finalSound = merge.merge(playedSounds.get(j).getWAV_file(), playedSounds.get(j - 1).getWAV_file());
                     } else {
                         finalSound = merge.merge(finalSound, playedSounds.get(j).getWAV_file());
                     }
@@ -61,7 +61,11 @@ public class SoundBoard implements SoundBoardInterface{
                 player.play(playedSounds.get(0).getPathToWAV());
             }
             try {
-                Thread.sleep(400);
+                if (i != 15) {
+                    Thread.sleep(250);
+                } else {
+                    Thread.sleep(1000);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -73,12 +77,22 @@ public class SoundBoard implements SoundBoardInterface{
 
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         SoundBoard board = new SoundBoard();
-        board.changePlayStatus(1, "Clap");
         board.changePlayStatus(0, "Kick");
-        board.changePlayStatus(0, "Snare");
-        board.changePlayStatus(1, "Open-Hihat");
-        board.changePlayStatus(2, "Closed-Hihat");
-        board.changePlayStatus(2, "Clap");
+        board.changePlayStatus(1, "Kick");
+        board.changePlayStatus(2, "Kick");
+        board.changePlayStatus(3, "Open-Hihat");
+        board.changePlayStatus(4, "Kick");
+        board.changePlayStatus(5, "Kick");
+        board.changePlayStatus(6, "Kick");
+        board.changePlayStatus(7, "Open-Hihat");
+        board.changePlayStatus(8, "Kick");
+        board.changePlayStatus(9, "Kick");
+        board.changePlayStatus(10, "Kick");
+        board.changePlayStatus(11, "Open-Hihat");
+        board.changePlayStatus(12, "Kick");
+        board.changePlayStatus(13, "Kick");
+        board.changePlayStatus(14, "Kick");
+        board.changePlayStatus(15, "Open-Hihat");
         board.run();
         System.out.println("complete");
 

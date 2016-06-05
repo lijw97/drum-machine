@@ -10,17 +10,13 @@ import java.io.*;
 import java.nio.file.Paths;
 
 /**
- * Created by Ziad on 5/21/16.
+ * Created by Jeffrey on 6/5/2016.
  */
-public class Player
-{
-    Media music;
-    MediaPlayer mediaPlayer;
+public class Player {
     Clip clip;
     AudioInputStream ais;
 
-    public Player()
-    {
+    public Player() {
 
     }
 
@@ -35,28 +31,22 @@ public class Player
         clip.open(ais);
         clip.start();
     }
+    public void play(byte[] newSound) {
+        AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100.0f, 16, 1, 2, 44100.0f, false);
+        try {
+            Clip clip = AudioSystem.getClip(); //generates a generic audio clip check API doc for more info
+            clip.open(format, newSound, 0, newSound.length);
+            clip.start();
 
-    public void endClip() throws IOException
-    {
-        try
-        {
-            ais.close();
+            clip.drain(); //DOES NOT BLOCK See Bug #4732218
+            //Thread.sleep(clip.getMicrosecondLength()/1000);
+        } catch (LineUnavailableException e){
+            System.out.println("hello");
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+//        catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    private void pause(int milliseconds)
-    {
-        try
-        {
-            Thread.sleep(milliseconds);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
-    }
+
 }
