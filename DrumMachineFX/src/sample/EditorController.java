@@ -67,15 +67,9 @@ public class EditorController
     @FXML public void initialize()
     {
         addInstrument("Hi-Hat", "closed-hihat.wav");
-        addInstrument("Snare Drum", "snare1.wav");
+        addInstrument("Snare Drum", "snare.wav");
         addInstrument("Kick", "kick.wav");
         addInstrument("Clap", "clap.wav");
-
-        Media chance = new Media(Paths.get(baseFile + "sample.mp3").toUri().toString());
-        MediaPlayer player = new MediaPlayer(chance);
-        mediaView = new MediaView();
-        mediaView.setMediaPlayer(player);
-        //player.setAutoPlay(true);
 
         Button playButton = new Button("Play");
         playButton.setOnAction(e -> play());
