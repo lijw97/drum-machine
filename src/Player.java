@@ -1,22 +1,21 @@
-package sample;
-
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaView;
+import javafx.scene.media.MediaPlayer;
 
 import javax.sound.sampled.*;
-import java.io.*;
-
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.IOException;
 
 /**
- * Created by Jeffrey on 6/5/2016.
+ * Created by Jeffrey Li on 5/30/2016.
  */
 public class Player {
+    Media music;
+    MediaPlayer mediaPlayer;
     Clip clip;
     AudioInputStream ais;
 
-    public Player() {
+    public Player()
+    {
 
     }
 
@@ -48,5 +47,27 @@ public class Player {
 //        }
     }
 
+    public void endClip() throws IOException
+    {
+        try
+        {
+            ais.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
+    public void pause(int milliseconds)
+    {
+        try
+        {
+            Thread.sleep(milliseconds);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
 }

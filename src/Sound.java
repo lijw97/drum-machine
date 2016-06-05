@@ -1,4 +1,7 @@
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by Jeffrey Li on 5/24/2016.
@@ -8,6 +11,7 @@ public class Sound {
     private File WAV_file;
     private String WAV_name;
     private boolean[] playArray = new boolean[16]; //represents 16 beats
+    private Player player = new Player();
     public Sound(String WAV_name, String pathToWAV) {
         this.WAV_name = WAV_name;
         this.pathToWAV = pathToWAV;
@@ -47,5 +51,40 @@ public class Sound {
 
     public boolean isPlayed(int beatindex) {
         return playArray[beatindex];
+    }
+    public void play() {
+        for(int i = 0; i<16; i++)
+        {
+            if(playArray[i])
+            {
+                try {
+                    player.play(pathToWAV);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedAudioFileException e) {
+                    e.printStackTrace();
+                } catch (LineUnavailableException e) {
+                    e.printStackTrace();
+                }
+                //System.out.println("Played: " + pathToWAV + ", Iteration: " + i);
+                try {
+                    player.endClip();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            //pause(tempo);
+        }
+    }
+
+    public void pause(int milliseconds) {
+        try
+        {
+            Thread.sleep(milliseconds);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }

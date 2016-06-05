@@ -2,74 +2,59 @@ package sample;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Ziad on 5/21/16.
+ * Created by Jeffrey on 6/5/2016.
  */
-public class Sound implements Runnable
-{
-    String file = "";
-    int[] array = new int[16];
-    Player player = new Player();
-    boolean running = true;
-    boolean onMediaView = false;
+public class Sound {
+    private String pathToWAV;
+    private File WAV_file;
+    private String WAV_name;
+    private boolean[] playArray = new boolean[16]; //represents 16 beats
 
-    public Sound(String fileName)
-    {
-        file = fileName;
-    }
-
-    public void setArray(int[] newArray)
-    {
-        array = newArray;
-    }
-
-    public void terminate()
-    {
-        running = false;
-    }
-
-    public void restart()
-    {
-        running = true;
-    }
-
-    public void run()
-    {
-        for(int i = 0; i<16; i++)
-        {
-            if(array[i] == 1)
-            {
-                try {
-                    player.play(file);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedAudioFileException e) {
-                    e.printStackTrace();
-                } catch (LineUnavailableException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("Played: " + file + ", Iteration: " + i);
-                try {
-                    player.endClip();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            pause(250);
+    public Sound(String WAV_name, String pathToWAV) {
+        this.WAV_name = WAV_name;
+        this.pathToWAV = pathToWAV;
+        this.WAV_file = new File(pathToWAV);
+        for (int i = 0; i < 16; i++) { //initializes everything to false
+            playArray[i] = false;
         }
     }
-
-    public void pause(int milliseconds)
-    {
-        try
-        {
-            Thread.sleep(milliseconds);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
+    public Sound(File file) {
+        this.WAV_file = file;
+        this.pathToWAV = file.getPath();
+        this.WAV_name = file.getName().replace(".wav", "");
+        for (int i = 0; i < 16; i++) { //initializes everything to false
+            playArray[i] = false;
         }
     }
+    //changes the play status to the opposite of what it was before.
+    public void changePlayStatus(int i) {
+        playArray[i] = !(playArray[i]);
+    }
+
+    public String getPathToWAV() {
+        return pathToWAV;
+    }
+
+    public File getWAV_file() {
+        return WAV_file;
+    }
+
+    public String getWAV_name() {
+        return WAV_name;
+    }
+
+    public boolean[] getPlayArray() {
+        return playArray;
+    }
+
+    public boolean isPlayed(int beatindex) {
+        return playArray[beatindex];
+    }
+
+
+
 }

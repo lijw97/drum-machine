@@ -1,14 +1,14 @@
+package sample;
+
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.*;
 
 /**
- * Created by Jeffrey Li on 5/24/2016.
+ * Created by Jeffrey Li on 6/5/2016.
  */
 public class Merger {
-
     public Merger(){
 
     }
@@ -113,7 +113,7 @@ public class Merger {
         return array;
     }
     private Sound write(byte[] array, AudioInputStream ais1, AudioInputStream ais2,
-                       String name1, String name2, int beatnum, boolean isLastMerge) {
+                        String name1, String name2, int beatnum, boolean isLastMerge) {
 
         ByteArrayInputStream bai = new ByteArrayInputStream(array);
         long max = Math.max(ais1.getFrameLength(), ais2.getFrameLength());
