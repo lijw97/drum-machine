@@ -88,6 +88,7 @@ public class EditorController
         playButton.setOnAction(e -> play());
         clearButton.setOnAction(e -> clear());
         soundboard.getChildren().add(playButton);
+        soundboard.getChildren().add(clearButton);
 
     }
 
@@ -116,6 +117,7 @@ public class EditorController
             instrument.getChildren().add(button);
 
             button.setOnAction(e -> beatClicked(button.getId(), instrumentList.indexOf(instrument)));
+            buttons.add(button);
         }
     }
 
