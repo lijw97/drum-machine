@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c50b90f5-c9ff-4ded-b943-3781f29ba18f" name="Default" comment="">
+<<<<<<< HEAD
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/DrumMachine_jar.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DrumMachine/sample/EditorController.class" afterPath="$PROJECT_DIR$/out/production/DrumMachine/sample/EditorController.class" />
@@ -16,6 +17,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrumMachineFX/src/sample/Player.java" afterPath="$PROJECT_DIR$/DrumMachineFX/src/sample/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrumMachineFX/src/sample/Sound.java" afterPath="$PROJECT_DIR$/DrumMachineFX/src/sample/Sound.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TestPlayByteArray.java" afterPath="$PROJECT_DIR$/src/TestPlayByteArray.java" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java" afterPath="$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
     </list>
     <ignored path="DrumMachine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,6 +46,8 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="SoundBoard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SoundBoard.java">
+<<<<<<< HEAD
+=======
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="40" column="97" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="97" />
@@ -50,11 +56,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditorController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditorController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java">
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.20884521">
               <caret line="159" column="115" selection-start-line="159" selection-start-column="115" selection-end-line="159" selection-end-column="115" />
+=======
+            <state vertical-scroll-proportion="0.95592284">
+              <caret line="1336" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1336" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MIDI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/MIDI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
               <folding />
             </state>
           </provider>
@@ -140,7 +172,11 @@
         <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
               <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+=======
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
               <folding />
             </state>
           </provider>
@@ -197,14 +233,15 @@
         <option value="$PROJECT_DIR$/src/TestPlayByteArray.java" />
         <option value="$PROJECT_DIR$/DrumMachineFX/src/sample/Sound.java" />
         <option value="$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="446" />
+    <option name="y" value="19" />
+    <option name="width" value="1364" />
+    <option name="height" value="726" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -754,8 +791,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="446" y="19" width="1364" height="726" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -764,10 +801,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28805238" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29679596" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19742814" sideWeight="0.4916067" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20015338" sideWeight="0.4916067" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20015338" sideWeight="0.5083933" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1144,7 +1181,21 @@
         <state vertical-scroll-proportion="-0.083538085">
           <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
           <folding>
+<<<<<<< HEAD
             <element signature="imports" expanded="false" />
+=======
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestPlayByteArray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="0" selection-start-line="32" selection-start-column="43" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           </folding>
         </state>
       </provider>
@@ -1190,22 +1241,37 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_71/javafx-src.zip!/javafx/event/EventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+=======
+    <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/MIDI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/SoundBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="97" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="97" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1218,14 +1284,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.346154">
           <caret line="1383" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1384" selection-end-column="0" />
+=======
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_71/javafx-src.zip!/javafx/event/EventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/SoundBoard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="97" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="97" />
+=======
+    <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/MIDI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           <folding />
         </state>
       </provider>
@@ -1248,6 +1327,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/TestPlayByteArray.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1262,6 +1342,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+=======
+    <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           <folding />
         </state>
       </provider>
@@ -1276,18 +1362,30 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Sound.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
+=======
+    <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.20884521">
           <caret line="159" column="115" selection-start-line="159" selection-start-column="115" selection-end-line="159" selection-end-column="115" />
+=======
+        <state vertical-scroll-proportion="0.95592284">
+          <caret line="1336" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1336" selection-end-column="0" />
+>>>>>>> 21c4de6eb7b71ce3385892a5a9490ee1c37e07f8
           <folding />
         </state>
       </provider>

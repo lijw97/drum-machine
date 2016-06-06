@@ -4,8 +4,6 @@ package sample;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
@@ -67,7 +65,7 @@ public class EditorController
     ArrayList<Sound> sounds = new ArrayList<Sound>();
     Merger merge = new Merger();
     Player player = new Player();
-    Set<ToggleButton> buttonSet = new HashSet();
+
 
     @FXML public void initialize() {
         addInstrument("Closed Hi-Hat", "closed-hihat.wav");
@@ -81,12 +79,11 @@ public class EditorController
         mediaView.setMediaPlayer(player);
         //player.setAutoPlay(true);
 
+
         Button playButton = new Button("Play");
-        Button clearButton = new Button("Clear");
-        clearButton.setOnAction(e -> clear());
+
         playButton.setOnAction(e -> play());
         soundboard.getChildren().add(playButton);
-        soundboard.getChildren().add(clearButton);
 
     }
 
@@ -114,8 +111,6 @@ public class EditorController
             button.setId(id.toString());
             instrument.getChildren().add(button);
             button.setOnAction(e -> beatClicked(button.getId(), instrumentList.indexOf(instrument)));
-            buttonSet.add(button);
-
         }
     }
 
@@ -125,15 +120,6 @@ public class EditorController
         //This is where it edits the array
         sounds.get(listIndex).changePlayStatus(Integer.parseInt(id));
 
-    }
-
-    public void clear() {
-        for (ToggleButton b : buttonSet) {
-            b.setSelected(false);
-        }
-        for (int i = 0; i < sounds.size(); i++) {
-            sounds.get(i).clear();
-        }
     }
 
     public void play() {
@@ -160,7 +146,11 @@ public class EditorController
                 } catch(IOException | javax.sound.sampled.LineUnavailableException | javax.sound.sampled.UnsupportedAudioFileException e) {}
             }
             try {
-                Thread.sleep(250);
+                if (i != 15) {
+                    Thread.sleep(250);
+                } else {
+                    Thread.sleep(1000);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
