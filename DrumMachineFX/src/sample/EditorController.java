@@ -1,9 +1,12 @@
 package sample;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
@@ -65,7 +68,7 @@ public class EditorController
     ArrayList<Sound> sounds = new ArrayList<Sound>();
     Merger merge = new Merger();
     Player player = new Player();
-
+    Set<ToggleButton> buttons = new HashSet();
 
     @FXML public void initialize() {
         addInstrument("Closed Hi-Hat", "closed-hihat.wav");
@@ -81,8 +84,9 @@ public class EditorController
 
 
         Button playButton = new Button("Play");
-
+        Button clearButton = new Button("Clear");
         playButton.setOnAction(e -> play());
+        clearButton.setOnAction(e -> clear());
         soundboard.getChildren().add(playButton);
 
     }
@@ -110,6 +114,7 @@ public class EditorController
             Integer id = j;
             button.setId(id.toString());
             instrument.getChildren().add(button);
+
             button.setOnAction(e -> beatClicked(button.getId(), instrumentList.indexOf(instrument)));
         }
     }
@@ -123,6 +128,7 @@ public class EditorController
     }
 
     public void play() {
+        ArrayList<byte[]> playlist = new ArrayList();
         for (int i = 0; i < 16; i++) {
             ArrayList<Sound> playedSounds = new ArrayList();
             byte[] finalSound = null;
@@ -139,24 +145,29 @@ public class EditorController
                         finalSound = merge.merge(finalSound, playedSounds.get(j).getWAV_file());
                     }
                 }
-                player.play(finalSound);
+                playlist.add(finalSound);
             } else if (playedSounds.size() == 1){
-                try {
-                    player.play(playedSounds.get(0).getPathToWAV());
-                } catch(IOException | javax.sound.sampled.LineUnavailableException | javax.sound.sampled.UnsupportedAudioFileException e) {}
+
+                playlist.add(merge.getByteArray(new File(playedSounds.get(0).getPathToWAV())));
+
             }
+        }
+        for (byte[] sound : playlist) {
+            player.play(sound);
             try {
-                if (i != 15) {
-                    Thread.sleep(250);
-                } else {
-                    Thread.sleep(1000);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-
+                Thread.sleep(250);
+            } catch(InterruptedException e) {}
         }
 
     }
+
+    public void clear() {
+        for (Sound i : sounds) {
+            i.clear();
+        }
+        for (ToggleButton i : buttons) {
+            i.setSelected(false);
+        }
+    }
+
 }
