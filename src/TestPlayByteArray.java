@@ -26,21 +26,11 @@ public class TestPlayByteArray {
         //finalbyte2 = merge.merge(clap.getWAV_file(), snare.getWAV_file());
         long closeAfterStopDelay = 1;
         AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100.0f, 16, 1, 2, 44100.0f, false);
-        try {
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File("C:\\Users\\Jeffrey Li\\drum-machine\\src\\sample.wav")));
-            clip.start();
-            Thread.sleep(1000);
-            Clip clip2 = AudioSystem.getClip();
-            clip2.open(AudioSystem.getAudioInputStream(new File("C:\\Users\\Jeffrey Li\\drum-machine\\src\\sample.wav")));
-            clip2.start();
 
-        } catch (LineUnavailableException e) {
-            System.out.println("hello");
-        }
-        catch (InterruptedException e) {
+            byte[] a = merge.concat(merge.getByteArray(clap.getWAV_file()), merge.getByteArray(snare.getWAV_file()));
+            player.play(a);
 
-        }
+
 
 
     }

@@ -51,6 +51,7 @@ public class EditorController
     Player player = new Player();
     Set<ToggleButton> buttons = new HashSet();
     int NUMBER_OF_BEATS = 16;
+    int tempo = 300;
 
     @FXML public void initialize() {
         addInstrument("Closed Hi-Hat", "closed-hihat.wav");
@@ -67,6 +68,26 @@ public class EditorController
         scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(soundboard);
+        TextField textField = new TextField ();
+        textField.setPromptText("Set new tempo (bpm)");
+        HBox hb = new HBox();
+        hb.getChildren().addAll(textField);
+        hb.setSpacing(10);
+        soundboard.getChildren().add(hb);
+        Button submitTempoButton = new Button("Submit");
+        soundboard.getChildren().add(submitTempoButton);
+        submitTempoButton.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                if ((textField.getText() != null && !textField.getText().isEmpty())) {
+                    String string = textField.getText();
+                    int i = Integer.parseInt(string);
+                    setTempo(i);
+
+                }
+            }
+        });
         Button playButton = new Button("Play");
         Button clearButton = new Button("Clear");
         playButton.setOnAction(e -> play());
@@ -138,13 +159,17 @@ public class EditorController
 
                 playlist.add(merge.getByteArray(new File(playedSounds.get(0).getPathToWAV())));
 
+            } else {
+                playlist.add(new byte[0]);
             }
         }
         for (byte[] sound : playlist) {
-            player.play(sound);
+            if (sound.length != 0) {
+                player.play(sound);
+            }
             try {
                 synchronized (this) {
-                    Thread.sleep(250);
+                    Thread.sleep(tempo);
                 }
             } catch(InterruptedException e) {}
         }
@@ -158,6 +183,12 @@ public class EditorController
         for (ToggleButton i : buttons) {
             i.setSelected(false);
         }
+    }
+
+    public void setTempo(int i) {
+        double secondsbetweenbeat = (double) 60 / (double) i;
+        int newtempo = (int) (Math.round(secondsbetweenbeat * 1000));
+        tempo = newtempo;
     }
 
 }
