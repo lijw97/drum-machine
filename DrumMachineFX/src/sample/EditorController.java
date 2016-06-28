@@ -22,28 +22,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Tooltip;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -63,12 +42,15 @@ public class EditorController
 {
     @FXML private VBox soundboard;
     @FXML public static MediaView mediaView;
+    private ScrollPane scrollPane;
     private ArrayList<HBox> instrumentList = new ArrayList<HBox>();
-    String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
+    //String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
+    String baseFile = "/Users/Ziad/Documents/Programming/drum-machine/src/";
     ArrayList<Sound> sounds = new ArrayList<Sound>();
     Merger merge = new Merger();
     Player player = new Player();
     Set<ToggleButton> buttons = new HashSet();
+    int NUMBER_OF_BEATS = 16;
 
     @FXML public void initialize() {
         addInstrument("Closed Hi-Hat", "closed-hihat.wav");
@@ -82,7 +64,9 @@ public class EditorController
         mediaView.setMediaPlayer(player);
         //player.setAutoPlay(true);
 
-
+        scrollPane = new ScrollPane();
+        scrollPane.setFitToWidth(true);
+        scrollPane.setContent(soundboard);
         Button playButton = new Button("Play");
         Button clearButton = new Button("Clear");
         playButton.setOnAction(e -> play());
@@ -106,11 +90,12 @@ public class EditorController
         ComboBox<String> instrumentCombo = new ComboBox<String>();
         instrumentCombo.setValue(name);
         instrument.getChildren().add(instrumentCombo);
+        instrumentCombo.setMinWidth(130.0);
         instrumentCombo.setPrefWidth(130.0);
         instrument.setMargin(instrumentCombo, new Insets(0, 10, 0, 10));
 
         //Adds all music buttons to HBox and sets buttons to change array when clicked
-        for(int j = 0; j< 16; j++) {
+        for(int j = 0; j< NUMBER_OF_BEATS; j++) {
             ToggleButton button = new ToggleButton();
             Integer id = j;
             button.setId(id.toString());
@@ -131,10 +116,11 @@ public class EditorController
 
     public void play() {
         ArrayList<byte[]> playlist = new ArrayList();
+        byte[] finalSound2 = null;
         for (int i = 0; i < 16; i++) {
             ArrayList<Sound> playedSounds = new ArrayList();
             byte[] finalSound = null;
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < sounds.size(); j++) {
                 if (sounds.get(j).isPlayed(i)) {
                     playedSounds.add(sounds.get(j));
                 }
@@ -157,7 +143,9 @@ public class EditorController
         for (byte[] sound : playlist) {
             player.play(sound);
             try {
-                Thread.sleep(250);
+                synchronized (this) {
+                    Thread.sleep(250);
+                }
             } catch(InterruptedException e) {}
         }
 
