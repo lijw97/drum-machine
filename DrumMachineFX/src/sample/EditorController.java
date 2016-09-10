@@ -24,15 +24,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.media.MediaView;
 /**
@@ -42,10 +38,10 @@ public class EditorController
 {
     @FXML private VBox soundboard;
     @FXML public static MediaView mediaView;
-    private ScrollPane scrollPane;
+    private ScrollPane pane;
     private ArrayList<HBox> instrumentList = new ArrayList<HBox>();
     //String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
-    String baseFile = "/Users/Ziad/Documents/Programming/drum-machine/src/";
+    String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
     ArrayList<Sound> sounds = new ArrayList<Sound>();
     Merger merge = new Merger();
     Player player = new Player();
@@ -65,13 +61,13 @@ public class EditorController
         mediaView.setMediaPlayer(player);
         //player.setAutoPlay(true);
 
-        scrollPane = new ScrollPane();
-        scrollPane.setFitToWidth(true);
-        scrollPane.setContent(soundboard);
+        pane = new ScrollPane();
+        pane.setFitToWidth(true);
+        pane.setContent(soundboard);
         TextField textField = new TextField ();
         textField.setPromptText("Set new tempo (bpm)");
         HBox hb = new HBox();
-        hb.getChildren().addAll(textField);
+        soundboard.getChildren().addAll(textField);
         hb.setSpacing(10);
         soundboard.getChildren().add(hb);
         Button submitTempoButton = new Button("Submit");
@@ -88,12 +84,7 @@ public class EditorController
                 }
             }
         });
-        Button playButton = new Button("Play");
-        Button clearButton = new Button("Clear");
-        playButton.setOnAction(e -> play());
-        clearButton.setOnAction(e -> clear());
-        soundboard.getChildren().add(playButton);
-        soundboard.getChildren().add(clearButton);
+
 
     }
 
@@ -108,8 +99,15 @@ public class EditorController
         sounds.add(new Sound(name, baseFile + file));
 
         //Adds ComboBox preset to selected instrument
-        ComboBox<String> instrumentCombo = new ComboBox<String>();
-        instrumentCombo.setValue(name);
+        Label instrumentCombo = new Label(name);
+        instrumentCombo.setAlignment(Pos.CENTER);
+
+        instrumentCombo.setStyle("-fx-background-color: linear-gradient(#f2f2f2, #d6d6d6), linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%), linear-gradient(#dddddd 0%, #f6f6f6 50%);"+
+        "-fx-background-radius: 8,7,6;"+
+        "-fx-background-insets: 0,1,2;"+
+        "-fx-text-fill: black;");
+//        "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ););");
+//        instrumentCombo.setEffect(new DropShadow());
         instrument.getChildren().add(instrumentCombo);
         instrumentCombo.setMinWidth(130.0);
         instrumentCombo.setPrefWidth(130.0);
