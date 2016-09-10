@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c50b90f5-c9ff-4ded-b943-3781f29ba18f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DrumMachine/KickSnare0.wav" afterPath="$PROJECT_DIR$/out/production/DrumMachine/KickSnare0.wav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DrumMachine/sample/EditorController$1.class" afterPath="$PROJECT_DIR$/out/production/DrumMachine/sample/EditorController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DrumMachine/sample/EditorController.class" afterPath="$PROJECT_DIR$/out/production/DrumMachine/sample/EditorController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DrumMachine/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/DrumMachine/sample/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrumMachineFX/src/sample/Editor.fxml" afterPath="$PROJECT_DIR$/DrumMachineFX/src/sample/Editor.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java" afterPath="$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrumMachineFX/src/sample/Main.java" afterPath="$PROJECT_DIR$/DrumMachineFX/src/sample/Main.java" />
     </list>
     <ignored path="DrumMachine.iws" />
@@ -749,8 +742,8 @@
       <file leaf-file-name="EditorController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-36.344826">
-              <caret line="122" column="25" selection-start-line="122" selection-start-column="25" selection-end-line="122" selection-end-column="25" />
+            <state vertical-scroll-proportion="-0.5862069">
+              <caret line="176" column="3" selection-start-line="176" selection-start-column="3" selection-end-line="183" selection-end-column="5" />
               <folding>
                 <element signature="e#1227#1233#0" expanded="true" />
                 <element signature="e#1418#1425#0" expanded="true" />
@@ -762,12 +755,12 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7755611">
-              <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.59351623">
+              <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#803#809#0" expanded="true" />
-                <element signature="e#924#931#0" expanded="true" />
+                <element signature="e#824#830#0" expanded="true" />
+                <element signature="e#945#952#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2531,8 +2524,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/EditorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-36.344826">
-          <caret line="122" column="25" selection-start-line="122" selection-start-column="25" selection-end-line="122" selection-end-column="25" />
+        <state vertical-scroll-proportion="-0.5862069">
+          <caret line="176" column="3" selection-start-line="176" selection-start-column="3" selection-end-line="183" selection-end-column="5" />
           <folding>
             <element signature="e#1227#1233#0" expanded="true" />
             <element signature="e#1418#1425#0" expanded="true" />
@@ -2542,12 +2535,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7755611">
-          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.59351623">
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#803#809#0" expanded="true" />
-            <element signature="e#924#931#0" expanded="true" />
+            <element signature="e#824#830#0" expanded="true" />
+            <element signature="e#945#952#0" expanded="true" />
           </folding>
         </state>
       </provider>

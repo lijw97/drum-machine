@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,7 +30,9 @@ public class Main extends Application {
     String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
     ArrayList<Sound> sounds = new ArrayList<Sound>();
     Set<ToggleButton> buttons = new HashSet();
-
+    Merger merge = new Merger();
+    Player player = new Player();
+    int tempo = 200;
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -45,6 +48,8 @@ public class Main extends Application {
         Button clearButton = new Button("Clear");
         root.getChildren().add(playButton);
         root.getChildren().add(clearButton);
+        playButton.setOnAction(e -> play());
+        clearButton.setOnAction(e -> clear());
         soundboard.setLayoutY(200);
         playButton.setLayoutX(300);
         playButton.setLayoutY(300);
@@ -53,6 +58,54 @@ public class Main extends Application {
         primaryStage.setTitle("Drum Machine");
         primaryStage.setScene(new Scene(root, 590, 600));
         primaryStage.show();
+    }
+    public void clear() {
+        for (Sound i : sounds) {
+            i.clear();
+        }
+        for (ToggleButton i : buttons) {
+            i.setSelected(false);
+        }
+    }
+    public void play() {
+        ArrayList<byte[]> playlist = new ArrayList();
+        byte[] finalSound2 = null;
+        for (int i = 0; i < 16; i++) {
+            ArrayList<Sound> playedSounds = new ArrayList();
+            byte[] finalSound = null;
+            for (int j = 0; j < sounds.size(); j++) {
+                if (sounds.get(j).isPlayed(i)) {
+                    playedSounds.add(sounds.get(j));
+                }
+            }
+            if (playedSounds.size() > 1) {
+                for (int j = 1; j < playedSounds.size(); j++) {
+                    if (finalSound == null) {
+                        finalSound = merge.merge(playedSounds.get(j).getWAV_file(), playedSounds.get(j - 1).getWAV_file());
+                    } else {
+                        finalSound = merge.merge(finalSound, playedSounds.get(j).getWAV_file());
+                    }
+                }
+                playlist.add(finalSound);
+            } else if (playedSounds.size() == 1){
+
+                playlist.add(merge.getByteArray(new File(playedSounds.get(0).getPathToWAV())));
+
+            } else {
+                playlist.add(new byte[0]);
+            }
+        }
+        for (byte[] sound : playlist) {
+            if (sound.length != 0) {
+                player.play(sound);
+            }
+            try {
+                synchronized (this) {
+                    Thread.sleep(tempo);
+                }
+            } catch(InterruptedException e) {}
+        }
+
     }
     public void addInstrument(String name, String file) {
         //Initializes HBox that will contain instrument and instrument's buttons
