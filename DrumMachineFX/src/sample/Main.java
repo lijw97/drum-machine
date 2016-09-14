@@ -71,11 +71,18 @@ public class Main extends Application {
         grid.add(submit, 4, 0);
         submit.setOnAction(e -> changeTempo(notification));
         root.getChildren().add(grid);
+        primaryStage.setStyle(
+                "-fx-background-image: url(" +
+                        "sample-dark-grunge.jpg" +
+                        "); " +
+                        "-fx-background-size: cover;"
+        );
         grid.setLayoutY(150);
         primaryStage.setTitle("Drum Machine");
         primaryStage.setScene(new Scene(root, 590, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
+
         System.out.print(grid.getWidth());
         grid.setLayoutX((590-grid.getWidth())/2);
 
@@ -84,7 +91,7 @@ public class Main extends Application {
         if (text.getText() != null && !text.getText().isEmpty()) {
             int x = Integer.parseInt(text.getText());
             text.clear();
-            tempo = 60000 / x;
+            tempo = 60000 / (4*x);
         }
 
     }
