@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -18,6 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -38,6 +43,7 @@ public class Main extends Application {
     {
 //        Parent root = FXMLLoader.load(getClass().getResource("Editor.fxml"));
         Group root = new Group();
+
         addInstrument("Closed Hi-Hat", "closed-hihat.wav");
         addInstrument("Snare Drum", "snare.wav");
         addInstrument("Kick", "kick.wav");
@@ -46,18 +52,41 @@ public class Main extends Application {
         root.getChildren().add(soundboard);
         Button playButton = new Button("Play");
         Button clearButton = new Button("Clear");
-        root.getChildren().add(playButton);
-        root.getChildren().add(clearButton);
+        Button submit = new Button("Submit");
+//        root.getChildren().add(playButton);
+//        root.getChildren().add(clearButton);
         playButton.setOnAction(e -> play());
         clearButton.setOnAction(e -> clear());
         soundboard.setLayoutY(200);
-        playButton.setLayoutX(300);
-        playButton.setLayoutY(300);
-        clearButton.setLayoutX(350);
-        clearButton.setLayoutY(350);
+
+        TextField notification = new TextField();
+        GridPane grid = new GridPane();
+        grid.setVgap(4);
+        grid.setHgap(10);
+        grid.setPadding(new Insets(5, 5, 5, 5));
+        grid.add(new Label("Set tempo (beats per min) to: "), 2, 0);
+        grid.add(notification, 3, 0);
+        grid.add(playButton, 0, 0);
+        grid.add(clearButton, 1, 0);
+        grid.add(submit, 4, 0);
+        submit.setOnAction(e -> changeTempo(notification));
+        root.getChildren().add(grid);
+        grid.setLayoutY(150);
         primaryStage.setTitle("Drum Machine");
         primaryStage.setScene(new Scene(root, 590, 600));
+        primaryStage.setResizable(false);
         primaryStage.show();
+        System.out.print(grid.getWidth());
+        grid.setLayoutX((590-grid.getWidth())/2);
+
+    }
+    public void changeTempo(TextField text) {
+        if (text.getText() != null && !text.getText().isEmpty()) {
+            int x = Integer.parseInt(text.getText());
+            text.clear();
+            tempo = 60000 / x;
+        }
+
     }
     public void clear() {
         for (Sound i : sounds) {
@@ -144,7 +173,7 @@ public class Main extends Application {
         }
     }
     public void beatClicked(String id, int listIndex) {
-        System.out.println("Button: " + id + " pressed in row number: " + listIndex);
+        //System.out.println("Button: " + id + " pressed in row number: " + listIndex);
 
         //This is where it edits the array
         sounds.get(listIndex).changePlayStatus(Integer.parseInt(id));
