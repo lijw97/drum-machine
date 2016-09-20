@@ -19,36 +19,47 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Main extends Application {
+public class Main extends Application{
     VBox soundboard = new VBox();
     ArrayList<HBox> instrumentList = new ArrayList<HBox>();
     String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
     ArrayList<Sound> sounds = new ArrayList<Sound>();
     Set<ToggleButton> buttons = new HashSet();
     Merger merge = new Merger();
+    final FileChooser fileChooser = new FileChooser();
+
     Player player = new Player();
     int tempo = 200;
+    private Desktop desktop = Desktop.getDesktop();
+    Stage stage;
+
     @Override
     public void start(Stage primaryStage) throws Exception
     {
 //        Parent root = FXMLLoader.load(getClass().getResource("Editor.fxml"));
         Group root = new Group();
-
-        addInstrument("Closed Hi-Hat", "closed-hihat.wav");
-        addInstrument("Snare Drum", "snare.wav");
-        addInstrument("Kick", "kick.wav");
-        addInstrument("Clap", "clap.wav");
-        addInstrument("Open Hi-Hat", "open-hihat.wav");
+        stage= primaryStage;
+        addInstrument("Closed Hi-Hat", baseFile+"closed-hihat.wav");
+        addInstrument("Snare Drum", baseFile+"snare.wav");
+        addInstrument("Kick", baseFile+ "kick.wav");
+        addInstrument("Clap", baseFile+"clap.wav");
+        addInstrument("Open Hi-Hat", baseFile+"open-hihat.wav");
         root.getChildren().add(soundboard);
         Button playButton = new Button("Play");
         Button clearButton = new Button("Clear");
@@ -58,6 +69,15 @@ public class Main extends Application {
         playButton.setOnAction(e -> play());
         clearButton.setOnAction(e -> clear());
         soundboard.setLayoutY(200);
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("WAV", "*.wav*")
+        );
+        Button openButton = new Button("Upload WAV file");
+
+        root.getChildren().add(openButton);
+        openButton.setOnAction(e -> handle());
+        openButton.setLayoutX(100);
+        openButton.setLayoutY(100);
 
         TextField notification = new TextField();
         GridPane grid = new GridPane();
@@ -71,12 +91,6 @@ public class Main extends Application {
         grid.add(submit, 4, 0);
         submit.setOnAction(e -> changeTempo(notification));
         root.getChildren().add(grid);
-        primaryStage.setStyle(
-                "-fx-background-image: url(" +
-                        "sample-dark-grunge.jpg" +
-                        "); " +
-                        "-fx-background-size: cover;"
-        );
         grid.setLayoutY(150);
         primaryStage.setTitle("Drum Machine");
         primaryStage.setScene(new Scene(root, 590, 600));
@@ -87,6 +101,24 @@ public class Main extends Application {
         grid.setLayoutX((590-grid.getWidth())/2);
 
     }
+    public void handle() {
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            String filename = file.getName();
+            String filepath = file.getAbsolutePath();
+            addInstrument(filename, filepath);
+        }
+    }
+//    private void openFile(File file) {
+//        try {
+//            desktop.open(file);
+//        } catch (IOException ex) {
+//            Logger.getLogger(
+//                    Main.class.getName()).log(
+//                    Level.SEVERE, null, ex
+//            );
+//        }
+//    }
     public void changeTempo(TextField text) {
         if (text.getText() != null && !text.getText().isEmpty()) {
             int x = Integer.parseInt(text.getText());
@@ -95,6 +127,7 @@ public class Main extends Application {
         }
 
     }
+
     public void clear() {
         for (Sound i : sounds) {
             i.clear();
@@ -151,7 +184,7 @@ public class Main extends Application {
         instrument.setAlignment(Pos.CENTER_LEFT);
         soundboard.getChildren().add(instrument);
         instrumentList.add(instrument);
-        sounds.add(new Sound(name, baseFile + file));
+        sounds.add(new Sound(name, file));
 
         //Adds ComboBox preset to selected instrument
         Label instrumentCombo = new Label(name);
