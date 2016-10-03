@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -43,6 +44,7 @@ public class Main extends Application{
     Set<ToggleButton> buttons = new HashSet();
     Merger merge = new Merger();
     final FileChooser fileChooser = new FileChooser();
+    boolean stop = false;
 
     Player player = new Player();
     int tempo = 200;
@@ -68,17 +70,19 @@ public class Main extends Application{
 //        root.getChildren().add(clearButton);
         playButton.setOnAction(e -> play());
         clearButton.setOnAction(e -> clear());
-        soundboard.setLayoutY(200);
+        soundboard.setLayoutY(220);
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("WAV", "*.wav*")
         );
         Button openButton = new Button("Upload WAV file");
 
-        root.getChildren().add(openButton);
+
         openButton.setOnAction(e -> handle());
         openButton.setLayoutX(100);
         openButton.setLayoutY(100);
-
+        Button stopButton = new Button("Stop");
+        Label currTempo = new Label("Curent Tempo: " + 60000 / (4*tempo) + " beats per minute");
+        root.getChildren().add(currTempo);
         TextField notification = new TextField();
         GridPane grid = new GridPane();
         grid.setVgap(4);
@@ -89,17 +93,36 @@ public class Main extends Application{
         grid.add(playButton, 0, 0);
         grid.add(clearButton, 1, 0);
         grid.add(submit, 4, 0);
-        submit.setOnAction(e -> changeTempo(notification));
+        grid.add(openButton, 5, 0);
+        submit.setOnAction(e -> changeTempo(notification, currTempo));
+        stopButton.setOnAction(e -> changeStop());
+        Label description = new Label("Welcome to the drum machine! The machine plays sixteen beats worth of sounds for you. \n" +
+                "Click on the toggle buttons to play a sound on that specific beat. Type a tempo in the tempo \ntext box to change" +
+                " the tempo (it's in beats per minute). Click on the \"Upload WAV file\" to \nupload your own sound snippets! Click the" +
+                " delete button to remove a sound. ");
+        Label madeby = new Label("Made by Jeffrey Li with the help of Ziad Ali");
+        root.getChildren().add(madeby);
+
+        grid.setLayoutY(10);
+        root.getChildren().add(description);
+        description.setLayoutX(95);
+        description.setLayoutY(10);
         root.getChildren().add(grid);
         grid.setLayoutY(150);
         primaryStage.setTitle("Drum Machine");
-        primaryStage.setScene(new Scene(root, 590, 600));
+        primaryStage.setScene(new Scene(root, 650, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
+        soundboard.setLayoutX(17);
+        currTempo.setLayoutX((650-currTempo.getWidth())/2);
+        currTempo.setLayoutY(190);
+        grid.setLayoutX((650-grid.getWidth())/2);
+        madeby.setLayoutX((650-madeby.getWidth())/2);
+        madeby.setLayoutY(95);
 
-        System.out.print(grid.getWidth());
-        grid.setLayoutX((590-grid.getWidth())/2);
-
+    }
+    public void changeStop() {
+        stop = false;
     }
     public void handle() {
         File file = fileChooser.showOpenDialog(stage);
@@ -119,12 +142,13 @@ public class Main extends Application{
 //            );
 //        }
 //    }
-    public void changeTempo(TextField text) {
+    public void changeTempo(TextField text, Label label) {
         if (text.getText() != null && !text.getText().isEmpty()) {
             int x = Integer.parseInt(text.getText());
             text.clear();
             tempo = 60000 / (4*x);
         }
+        label.setText("Current tempo: " + 60000/(4*tempo) + " beats per minute");
 
     }
 
@@ -139,6 +163,7 @@ public class Main extends Application{
     public void play() {
         ArrayList<byte[]> playlist = new ArrayList();
         byte[] finalSound2 = null;
+        stop = true;
         for (int i = 0; i < 16; i++) {
             ArrayList<Sound> playedSounds = new ArrayList();
             byte[] finalSound = null;
@@ -164,16 +189,18 @@ public class Main extends Application{
                 playlist.add(new byte[0]);
             }
         }
-        for (byte[] sound : playlist) {
-            if (sound.length != 0) {
-                player.play(sound);
-            }
-            try {
-                synchronized (this) {
-                    Thread.sleep(tempo);
+
+            for (byte[] sound : playlist) {
+                if (sound.length != 0) {
+                    player.play(sound);
                 }
-            } catch(InterruptedException e) {}
-        }
+                try {
+                    synchronized (this) {
+                        Thread.sleep(tempo);
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
 
     }
     public void addInstrument(String name, String file) {
@@ -196,6 +223,9 @@ public class Main extends Application{
                 "-fx-text-fill: black;");
 //        "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ););");
 //        instrumentCombo.setEffect(new DropShadow());
+        Button deleteButton = new Button("Delete");
+        deleteButton.setOnAction(e->delete(deleteButton));
+        instrument.getChildren().add(deleteButton);
         instrument.getChildren().add(instrumentCombo);
         instrumentCombo.setMinWidth(130.0);
         instrumentCombo.setPrefWidth(130.0);
@@ -211,6 +241,19 @@ public class Main extends Application{
             button.setOnAction(e -> beatClicked(button.getId(), instrumentList.indexOf(instrument)));
             buttons.add(button);
         }
+    }
+    public int delete(Button button) {
+        for (Node child : soundboard.getChildren()) {
+            for (Node child2 : ((HBox) child).getChildren()){
+                if (child2 == button) {
+                    soundboard.getChildren().remove(child);
+                    return 0;
+                }
+
+            }
+
+        }
+        return 0;
     }
     public void beatClicked(String id, int listIndex) {
         //System.out.println("Button: " + id + " pressed in row number: " + listIndex);

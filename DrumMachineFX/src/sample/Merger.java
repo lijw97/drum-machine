@@ -14,6 +14,7 @@ public class Merger {
     }
     public byte[] getByteArray(File file) {
         byte[] sound1;
+
         ByteArrayOutputStream out1 = new ByteArrayOutputStream();
         BufferedInputStream in1 = null;
         try {
@@ -36,6 +37,7 @@ public class Merger {
 
         } catch(java.io.IOException e){}
         sound1 = out1.toByteArray();
+        System.out.println(sound1.length);
         return sound1;
     }
     public byte[] merge(byte[] array, File file) {
@@ -50,6 +52,7 @@ public class Merger {
     }
     private byte[] mixBuffers(byte[] sound1, byte[] sound2) {
         byte[] array = new byte[Math.max(sound1.length, sound2.length)];
+        System.out.println(array.length);
         byte[] max;
         if (sound2.length > sound1.length){
             max = sound2;
@@ -84,6 +87,7 @@ public class Merger {
                         String name1, String name2, int beatnum, boolean isLastMerge) {
 
         ByteArrayInputStream bai = new ByteArrayInputStream(array);
+
         long max = Math.max(ais1.getFrameLength(), ais2.getFrameLength());
         AudioInputStream ais = new AudioInputStream(bai, ais1.getFormat(), max);
         File newFile;

@@ -26,10 +26,11 @@ public class TestPlayByteArray {
         //finalbyte2 = merge.merge(clap.getWAV_file(), snare.getWAV_file());
         long closeAfterStopDelay = 1;
         AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100.0f, 16, 1, 2, 44100.0f, false);
+            byte[] a = new byte[44100];
 
-            byte[] a = merge.concat(merge.getByteArray(clap.getWAV_file()), merge.getByteArray(snare.getWAV_file()));
+            //byte[] a = merge.concat(merge.getByteArray(clap.getWAV_file()), merge.getByteArray(snare.getWAV_file()));
             player.play(a);
-
+            //System.out.println("played");
 
 
 
