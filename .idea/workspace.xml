@@ -4,6 +4,7 @@
     <list default="true" id="c50b90f5-c9ff-4ded-b943-3781f29ba18f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DrumMachine/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/DrumMachine/sample/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DrumMachineFX/src/sample/Main.java" afterPath="$PROJECT_DIR$/DrumMachineFX/src/sample/Main.java" />
     </list>
     <ignored path="DrumMachine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,8 +92,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35416666">
-              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="65" />
+            <state vertical-scroll-proportion="-0.3984375">
+              <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/src/TestMP3Simultaneous.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+              <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -1812,15 +1813,15 @@
     <entry file="file://$PROJECT_DIR$/src/TestMP3Simultaneous.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DrumMachineFX/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35416666">
-          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="65" />
+        <state vertical-scroll-proportion="-0.3984375">
+          <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

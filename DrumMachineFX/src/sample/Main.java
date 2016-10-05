@@ -39,7 +39,7 @@ import java.util.logging.Logger;
 public class Main extends Application{
     VBox soundboard = new VBox();
     ArrayList<HBox> instrumentList = new ArrayList<HBox>();
-    String baseFile = "C:\\Users\\Jeffrey Li\\drum-machine\\src\\";
+    String baseFile = new File("").getAbsolutePath() + "\\src\\";
     ArrayList<Sound> sounds = new ArrayList<Sound>();
     Set<ToggleButton> buttons = new HashSet();
     Merger merge = new Merger();
@@ -54,6 +54,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+        System.out.println(baseFile);
 //        Parent root = FXMLLoader.load(getClass().getResource("Editor.fxml"));
         Group root = new Group();
         stage= primaryStage;
