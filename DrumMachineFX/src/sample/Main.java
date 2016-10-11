@@ -190,7 +190,8 @@ public class Main extends Application{
                 playlist.add(new byte[0]);
             }
         }
-
+        int x = 5;
+        while (x > 0) {
             for (byte[] sound : playlist) {
                 if (sound.length != 0) {
                     player.play(sound);
@@ -202,7 +203,8 @@ public class Main extends Application{
                 } catch (InterruptedException e) {
                 }
             }
-
+            x-=1;
+        }
     }
     public void addInstrument(String name, String file) {
         //Initializes HBox that will contain instrument and instrument's buttons
